@@ -75,6 +75,10 @@ app.delete('/api/notes/:id', (req, res) => {
       if (element.id == id){
         note = element
         notes.splice(index, 1)
+        fs.writeFileSync(
+            path.join(__dirname, './data/db.json'),
+            JSON.stringify({ notes : notes }, null, 2)
+        );
         return res.json(note);
       } 
     
